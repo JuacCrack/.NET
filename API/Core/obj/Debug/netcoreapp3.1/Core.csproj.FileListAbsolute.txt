@@ -1,0 +1,13 @@
+C:\Users\Joa\source\repos\API\Core\bin\Debug\netcoreapp3.1\Core.deps.json
+C:\Users\Joa\source\repos\API\Core\bin\Debug\netcoreapp3.1\Core.dll
+C:\Users\Joa\source\repos\API\Core\bin\Debug\netcoreapp3.1\Core.pdb
+C:\Users\Joa\source\repos\API\Core\bin\Debug\netcoreapp3.1\Data.dll
+C:\Users\Joa\source\repos\API\Core\bin\Debug\netcoreapp3.1\Data.pdb
+C:\Users\Joa\source\repos\API\Core\obj\Debug\netcoreapp3.1\Core.csproj.AssemblyReference.cache
+C:\Users\Joa\source\repos\API\Core\obj\Debug\netcoreapp3.1\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Joa\source\repos\API\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfoInputs.cache
+C:\Users\Joa\source\repos\API\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfo.cs
+C:\Users\Joa\source\repos\API\Core\obj\Debug\netcoreapp3.1\Core.csproj.CoreCompileInputs.cache
+C:\Users\Joa\source\repos\API\Core\obj\Debug\netcoreapp3.1\Core.csproj.CopyComplete
+C:\Users\Joa\source\repos\API\Core\obj\Debug\netcoreapp3.1\Core.dll
+C:\Users\Joa\source\repos\API\Core\obj\Debug\netcoreapp3.1\Core.pdb
