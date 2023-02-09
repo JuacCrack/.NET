@@ -1,18 +1,19 @@
 ﻿using Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace Core.PersonRepository.Interfaces
+namespace Core.PersonRepository.Interfaces //ESTA ES UNA INTERFAZ QUE SERA IMPLEMENTADA EN EL REPOSITORIO DE CONTACTO
 {
     public interface IContactRepository
     {
-        List<Contact> GetEmail(string email);
-        List<Contact> GetCity(string name);
-        Contact Get(Guid id);
-        Contact GetShuffle();
-        List<Contact> GetAll();
-        void AddContact(AddContactRequest request);
-        void UpdateContact(Guid id, UpdateContactRequest request);
-        void Delete(Guid id);
+        Task <List<Contact>> GetEmail(string email);
+        Task <List<Contact>> GetCity(string name);
+        Task <Contact> Get(Guid id);
+        Task <List<Contact>> GetShuffle();
+        Task <List<Contact>> GetAll();
+        Task AddContact(Request request);
+        Task UpdateContact(Guid id, Request request);
+        Task Delete(Guid id);
     }
 }

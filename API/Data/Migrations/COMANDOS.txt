@@ -1,0 +1,5 @@
+﻿dotnet buil
+dotnet clean
+dotnet ef migrations add [NOMBRE DE LA MIGRACION]
+dotnet ef database update
+dotnet ef migrations remove

@@ -20,12 +20,12 @@ namespace Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // ESTE METODO SE ACTIVA AL INICIAR LA API Y AGREGA LOS SERVICIOS DE REPOSITORIO Y DE CONEXION
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MyDbContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("MySQLConnection")));
-            services.AddScoped<IContactRepository, ContactRepository>();
+                options.UseMySql(Configuration.GetConnectionString("MySQLConnection")));//UTILIZA LA CADENA DE CONEXION DE appsettings.json PARA CONECTARSE A MYSQL
+            services.AddScoped<IContactRepository, ContactRepository>();//AGREGAMOS LOS SERVICIOS DE REPOSITORIO
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = " API ", Version = "v1" });
@@ -34,7 +34,7 @@ namespace Api
             services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // ESTE METODO SE ACTIVA AL INICIAR LA API. ESTE METODO CONFIGURA EL METODO HTTP PARA PODER UTILIZAR SWAGGER
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseSwagger();

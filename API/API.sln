@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{B12C89FF-DD89-4C1A-94F4-52A3EB6172D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APITest", "APITest\APITest.csproj", "{9EFD7DCE-7B6B-49D1-868A-F8002261B8AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APITest", "APITest\APITest.csproj", "{9EFD7DCE-7B6B-49D1-868A-F8002261B8AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{776C284A-2EB5-4C2B-9651-01D337E9597D}"
+	ProjectSection(SolutionItems) = preProject
+		README.txt = README.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

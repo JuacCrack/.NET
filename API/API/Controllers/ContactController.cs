@@ -11,101 +11,103 @@ namespace Api.Controllers
 {
     [Route("api/people")]
     [ApiController]
-    public class ContactController : ControllerBase
+    public class ContactController : ControllerBase //CONTROLADOR PRINCIPAL
     {
+        //CONSTRUCTOR PRIVADO DE IContactRepository 
+
         private readonly IContactRepository _contactRepository;
 
+        //CONSTRUCTOR ContactController utiliza IContactRepository -> varable de solo lectura -> _contactRepository.
+        //La variable _contactRepository se utiliza para interactuar con la Base de Datos
         public ContactController(IContactRepository contactRepository)
         {
             _contactRepository = contactRepository;
         }
         //TRAER TODOS LOS CONTACTOS
         [HttpGet]
-        public ActionResult<List<Contact>> Get()
+        public async Task<ActionResult<List<Contact>>> Get()
         {
-            var contacts = _contactRepository.GetAll();
-            if (contacts.Count != 0) return Ok(_contactRepository.GetAll());
-            return StatusCode(204, "La lista de contactos esta vacia");
+            var contacts = await _contactRepository.GetAll();
+            return Ok(contacts);
         }
         //TRAER CONTACTO POR ID
         [HttpGet("{id}")]
-        public ActionResult<Contact> Get(Guid id)
+        public async Task<ActionResult<Contact>> Get(Guid id)
         {
-            var contact = _contactRepository.Get(id);
-            if (contact == null)
+            var contact = await _contactRepository.Get(id);
+            if (contact == null) 
             {
-                return NotFound();
+                return NotFound();//SI LA ID ES NULL O NO SE ENCUENTRA DEVUELVE UN 404
             }
-            return Ok(contact);
+            return Ok(contact);// CASO CONTRARIO DEVUELVE EL CONTACTO POR ID
         }
         //TRAER CONTACTO ALEATORIO
         [HttpGet("shuffle")]
-        public ActionResult<Contact> GetShuffle()
+        public async Task<ActionResult<Contact>> GetShuffle()
         {
-            var contact = _contactRepository.GetShuffle();
-            if (contact == null)
+            var contact = await _contactRepository.GetShuffle();
+            if (contact == null) 
             {
-                return NotFound();
+                return NotFound();//SI POR ALGUN MOTIVO NO PUEDE TRAER UN CONTACTO ALEATORIO DEVUELVE UN 404
             }
-            return Ok(contact);
+            return Ok(contact);//CASO CONTRARIO DEVUELVE UN CONTACTO ALEATORIO
         }
         //CARGAR CONTACTO
         [HttpPost]
-        public ActionResult<Contact> AddContact(AddContactRequest request)
+        public async Task<ActionResult<Contact>> AddContact(Request request)
         {
-            _contactRepository.AddContact(request);
-            return Ok();
+           await _contactRepository.AddContact(request);//UTILIZA EL MODELO REQUEST PARA CARGARLO EN EL MODELO CONTACTO Y SUBIRLO A LA BASE DE DATOS
+            return Ok();//AL CARGAR EL CONTACTO DEVUELVE UN 200
         }
         //ACTUALIZAR CONTACTO
         [HttpPut("{id}")]
-        public ActionResult<Contact> UpdateContact(Guid id, UpdateContactRequest request)
+        public async Task<ActionResult<Contact>> UpdateContact(Guid id, Request request)
         {
-            var contact = _contactRepository.Get(id);
-            if (contact == null)
+            var contact = await _contactRepository.Get(id); //SOLICITA LA BUSQUEDA DE UNA ID 
+            if (contact == null) 
             {
-                return NotFound();
+                return NotFound(); // SI LA ID ES NULA DEVUELVE UN 404
             }
-
-            _contactRepository.UpdateContact(id, request);
-            return NoContent();
+            await _contactRepository.UpdateContact(id, request); //CASO CONTRARIO UTILIZA LA ID SOLICITADA Y EL MODELO REQUEST PARA UN UPDATE AL MODELO CONTACTO Y SUBIRLO A LA BASE DE DATOS
+            return Ok(contact);// SI ESTO SE REALIZA DEVUELVE UN 200
         }
         //BORRAR CONTACTO
         [HttpDelete("{id}")]
-        public ActionResult<Contact> Delete(Guid id)
+        public async Task<ActionResult<Contact>> Delete(Guid id)
         {
-            var contact = _contactRepository.Get(id);
+            var contact = await _contactRepository.Get(id); //SOLICITA LA BUSQUEDA DE UNA ID 
             if (contact == null)
             {
-                return NotFound();
+                return NotFound();// SI LA ID ES NULA DEVUELVE UN 404
             }
-            _contactRepository.Delete(id);
-            return NoContent();
+            await _contactRepository.Delete(id);//SI LA ID ES VALIDA BORRA LA ID SOLICITADA
+            return Ok(contact);// SI ESTO SE REALIZA DEVUELVE UN 200
         }
         //FILTRAR POR CIUDAD
         [HttpGet("GetContactByCity/{name}")]
-        public ActionResult GetCity(string name)
+        public async Task<ActionResult> GetCity(string name)
         {
-            var contacts = _contactRepository.GetCity(name);
+            var contacts = await _contactRepository.GetCity(name);//REALIZA LA BUSQUEDA DE UN CITY NAME SOLICITADO EN LA RUTA
             if (contacts == null)
             {
-                return NotFound();
+                return NotFound();//SI NO SE ENCUENTRA LA CITY NAME DEVUELVE UN 4O4
             }
 
-            return Ok(contacts);
+            return Ok(contacts);//SI ENCUENTRA LA CITY NAME DEVUELVE UN 200
         }
 
         //FILTRAR POR CIUDAD
         [HttpGet("GetContactByEmail/{email}")]
-        public ActionResult<Contact> GetEmail(string email)
+        public async Task<ActionResult<Contact>> GetEmail(string email)
         {
-            var contact = _contactRepository.GetEmail(email);
+            var contact = await _contactRepository.GetEmail(email);//REALIZA LA BUSQUEDA DE UN EMAIL SOLICITADO EN LA RUTA
 
             if (contact == null)
             {
-                return NotFound();
+                return NotFound();//SI NO SE ENCUENTRA EL EMAIL DEVUELVE UN 4O4
             }
 
-            return Ok(contact);
+            return Ok(contact);//SI ENCUENTRA EL EMAIL DEVUELVE UN 200
         }
 
     }

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace Data.Models
 {
-
-    public class Contact//MODELO DE CONTACTO
+    public class Request //MODELO PARA CARGAR UN NUEVO CONTACTO
     {
-        public Guid ContactId { get; set; }
         public string? name { get; set; }
         public string? company { get; set; }
         public string? profile { get; set; }
@@ -17,9 +14,7 @@ namespace Data.Models
         public string? phonep { get; set; }
         public string? address { get; set; }
 
-        public int? CityFK { get; set; }//CLAVE FORANEA RELACIONADO CON EL MODELO CITY
-        public City? City { get; set; }
+        public int? CityFK { get; set; } 
 
     }
-
 }
