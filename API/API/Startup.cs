@@ -25,7 +25,8 @@ namespace Api
         {
             services.AddDbContext<MyDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("MySQLConnection")));//UTILIZA LA CADENA DE CONEXION DE appsettings.json PARA CONECTARSE A MYSQL
-            services.AddScoped<IContactRepository, ContactRepository>();//AGREGAMOS LOS SERVICIOS DE REPOSITORIO
+            services.AddScoped<IContactRepository, ContactRepository>();//AGREGAMOS LOS SERVICIOS DE REPOSITORIO CONTACTO
+            services.AddScoped<ICityRepository, CityRepository>();//AGREGAMOS LOS SERVICIOS DE REPOSITORIO CITY
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = " API ", Version = "v1" });

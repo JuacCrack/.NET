@@ -20,9 +20,9 @@ namespace Data.Context
                         .HasOne<City>(c => c.City)
                         .WithMany()
                         .HasForeignKey(c => c.CityFK)
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict);//ESTABLECEMOS UNA RELACION DE UNO A MUCHOS MEDIANTE LA FK CityFK
 
-            modelBuilder.Entity<Contact>().HasIndex(c => c.CityFK).IsUnique(false).HasName("IX_Contacts_CityFK");
+            modelBuilder.Entity<Contact>().HasIndex(c => c.CityFK).IsUnique(false).HasName("IX_Contacts_CityFK");//ELIMINAMOS EL INDICE UNICO EN CityFK
 
         }
 

@@ -1,12 +1,15 @@
 ﻿using Api.Controllers;
+using Core.DTO;
 using Core.PersonRepository.Interfaces;
 using Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace APITest.Api.Controller
 {
@@ -21,8 +24,8 @@ namespace APITest.Api.Controller
         public void Setup()
         {
             _contacts = new List<Contact>(){//UTILIZAMOS LA INYECCION DEL MODELO CONTACT PARA SIMULAR UNA LISTA DE 2 CONTACTOS
-                new Contact { ContactId = Guid.Parse("67c8b72f-75e9-4e2e-9edc-79a9219f08c3"), name = "Matias", company = "Samsung", profile = "Backend", image = "mati.jpg", email = "mati@gmail.com", birthdate = "1998/12/31", phonew = "82818882812", phonep = "9012929019", address = "Evergreen 124", CityFK = 1 },
-                new Contact { ContactId = Guid.Parse("67c8b72f-75e9-4e2e-9edc-78a9219f08c3"), name = "Messi", company = "Lg", profile = "Frontend", image = "messi.jpg", email = "messi@gmail.com", birthdate = "1980/04/12", phonew = "29019291292", phonep = "9291290290", address = "Dreyer 2221", CityFK = 2 }};
+                new Contact { ContactId = Guid.Parse("67c8b72f-75e9-4e2e-9edc-79a9219f08c3"), fullname = "Matias", company = "Samsung", profile = "Backend", image = "mati.jpg", email = "mati@gmail.com", birthdate = "1998/12/31", phonew = "82818882812", phonep = "9012929019", address = "Evergreen 124", CityFK = 1 },
+                new Contact { ContactId = Guid.Parse("67c8b72f-75e9-4e2e-9edc-78a9219f08c4"), fullname = "Messi", company = "Lg", profile = "Frontend", image = "messi.jpg", email = "messi@gmail.com", birthdate = "1980/04/12", phonew = "29019291292", phonep = "9291290290", address = "Dreyer 2221", CityFK = 2 }};
         }
 
         public APIControllerTest()
@@ -31,51 +34,90 @@ namespace APITest.Api.Controller
             _controller = new ContactController(_repository.Object);//EL CONTROLADOR UTILIZA EL REPOSITORIO SIMULADO POR MOCK
         }
 
-
-        [TestMethod]//TRAER TODOS LOS CONTACTOS
-        public void Get_ShouldReturnAllPersons()
+        [TestMethod]
+        public async Task UpdateContact_ShouldUpdatePersonInRepository()
         {
             // Arrange
-            _repository.Setup(repo => repo.GetAll()).Returns(_contacts);//configura el repositorio para que devuelva una lista predeterminada de contactos al llamar al método "GetAll"
+            var request = new ContactDto
+            {
+                fullname = "John Doe",
+                company = "ACME Inc.",
+                profile = "Software Engineer",
+                image = "image.jpg",
+                email = "johndoe@example.com",
+                birthdate = "1980/01/01",
+                phonew = "555-555-5555",
+                phonep = "555-555-5555",
+                address = "123 Main St.",
+                CityFK = 1
+            };
+            var id = Guid.Parse("67c8b72f-75e9-4e2e-9edc-79a9219f08c3");
+            _repository.Setup(repo => repo.UpdateContact(id, request)).Returns(Task.CompletedTask);
 
             // Act
-            var result = _controller.Get().Result;// llama al método "Get" en el controlador "ContactController" y se almacena el resultado en la variable "result".
+            await _controller.UpdateContact(id, request);
 
             // Assert
-            Assert.IsInstanceOfType(result, typeof(OkObjectResult));//se realizan varias afirmaciones para verificar que el resultado es el esperado 
-            var returnedPersons = (result as OkObjectResult).Value as List<Contact>;//Se verifica que "result" es una instancia de "OkObjectResult", que el valor devuelto es una lista de contactos 
-            Assert.IsNotNull(returnedPersons);
-            Assert.AreEqual(2, returnedPersons.Count);//la cantidad de contactos es 2.
+            _repository.Verify(repo => repo.UpdateContact(id, request), Times.Once());
+        }
 
+
+        [TestMethod]
+        public async Task AddContact_ShouldAddPersonToRepository()
+        {
+            // Arrange
+            var request = new ContactDto
+            {
+                fullname = "John Doe",
+                company = "ACME Inc.",
+                profile = "Software Engineer",
+                image = "image.jpg",
+                email = "johndoe@example.com",
+                birthdate = "1980/01/01",
+                phonew = "555-555-5555",
+                phonep = "555-555-5555",
+                address = "123 Main St.",
+                CityFK = 1
+            };
+            _repository.Setup(repo => repo.AddContact(request)).Returns(Task.CompletedTask);
+
+            // Act
+            await _controller.AddContact(request);
+
+            // Assert
+            _repository.Verify(repo => repo.AddContact(request), Times.Once());
         }
 
         [TestMethod]
-        public void Get_ShouldReturnContactById()
+        public async Task DeleteContact_ShouldRemoveContactFromRepository()
         {
             // Arrange
-            Guid id = Guid.Parse("67c8b72f-75e9-4e2e-9edc-79a9219f08c3");
-            _repository.Setup(repo => repo.Get(id)).Returns(_contacts[0]);//se da la id para el contacto que se desea obtener y se configura el repositorio mock para que retorne el contacto específico
+            var id = Guid.Parse("67c8b72f-75e9-4e2e-9edc-79a9219f08c3");
+            _repository.Setup(repo => repo.Delete(id)).Returns(Task.CompletedTask);
 
             // Act
-            var result = _controller.Get(id).Result;//se invoca el método Get del controlador con la id especificada y se almacena el resultado.
+            await _controller.Delete(id);
 
             // Assert
-            var okResult = result as OkObjectResult;// verifica que la operación se ha completado correctamente 
-            Assert.IsNotNull(okResult);//se retorna un objeto
-            var returnedContact = okResult.Value as Contact;
-            Assert.IsNotNull(returnedContact);//se convierte el valor devuelto en un objeto Contact
-            Assert.AreEqual(id, returnedContact.ContactId);//se comprueban sus propiedades para asegurarse de que sean las esperadas
-            Assert.AreEqual("Matias", returnedContact.name);
-            Assert.AreEqual("Samsung", returnedContact.company);
-            Assert.AreEqual("Backend", returnedContact.profile);
-            Assert.AreEqual("mati.jpg", returnedContact.image);
-            Assert.AreEqual("mati@gmail.com", returnedContact.email);
-            Assert.AreEqual("1998/12/31", returnedContact.birthdate);
-            Assert.AreEqual("82818882812", returnedContact.phonew);
-            Assert.AreEqual("9012929019", returnedContact.phonep);
-            Assert.AreEqual("Evergreen 124", returnedContact.address);
-            Assert.AreEqual(1, returnedContact.CityFK);
+            _repository.Verify(repo => repo.Delete(id), Times.Once());
         }
+
+        [TestMethod]
+        public async Task Get_ShouldReturnContactWithGivenId()
+        {
+            // Arrange
+            var id = Guid.Parse("67c8b72f-75e9-4e2e-9edc-79a9219f08c3");
+            var expected = _contacts.SingleOrDefault(c => c.ContactId == id);
+            _repository.Setup(repo => repo.Get(id)).ReturnsAsync(expected);
+
+            // Act
+            var result = await _controller.Get(id);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+        }
+
 
     }
 }
