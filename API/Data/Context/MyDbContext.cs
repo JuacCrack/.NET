@@ -14,13 +14,20 @@ namespace Data.Context
         public DbSet<Contact> Contacts { get; set; }//DECLARAMOS NUESTROS MODELOS PARA CONVERTIRLOS EN TABLAS 
         public DbSet<City> Cities { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)//DECLARAMOS LA RELACION DE NUESTRAS TABLAS
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Contact>()//UN CONTACTO
-                .HasOne<City>(c=> c.City)//VA A TENER UN CAMPO DE CIUDAD
-                .WithOne()
-                .HasForeignKey<Contact>(c => c.CityFK);//ESA CLAVE FORANEA VA A SER EL CAMPO CITYFK
+            modelBuilder.Entity<Contact>()
+                        .HasOne<City>(c => c.City)
+                        .WithMany()
+                        .HasForeignKey(c => c.CityFK)
+                        .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Contact>().HasIndex(c => c.CityFK).IsUnique(false).HasName("IX_Contacts_CityFK");
+
         }
+
+
+
     }
 
 }

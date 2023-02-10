@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Joa\\source\\repos\\API\\Data\\Data.csproj": {}
+    "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Joa\\source\\repos\\API\\Data\\Data.csproj": {
+    "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Joa\\source\\repos\\API\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\Users\\Joa\\source\\repos\\API\\Data\\Data.csproj",
+        "projectPath": "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\Joa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Joa\\source\\repos\\API\\Data\\obj\\",
+        "outputPath": "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -6,10 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.DTO;
 
 namespace Api.Controllers
 {
-    [Route("api/people")]
+    [Route("api/contact")]
     [ApiController]
     public class ContactController : ControllerBase //CONTROLADOR PRINCIPAL
     {
@@ -24,14 +25,14 @@ namespace Api.Controllers
             _contactRepository = contactRepository;
         }
         //TRAER TODOS LOS CONTACTOS
-        [HttpGet]
+        [HttpGet("GetAllContacts")]
         public async Task<ActionResult<List<Contact>>> Get()
         {
             var contacts = await _contactRepository.GetAll();
             return Ok(contacts);
         }
         //TRAER CONTACTO POR ID
-        [HttpGet("{id}")]
+        [HttpGet("GetById/{id}")]
         public async Task<ActionResult<Contact>> Get(Guid id)
         {
             var contact = await _contactRepository.Get(id);
@@ -42,7 +43,7 @@ namespace Api.Controllers
             return Ok(contact);// CASO CONTRARIO DEVUELVE EL CONTACTO POR ID
         }
         //TRAER CONTACTO ALEATORIO
-        [HttpGet("shuffle")]
+        [HttpGet("GetShuffle")]
         public async Task<ActionResult<Contact>> GetShuffle()
         {
             var contact = await _contactRepository.GetShuffle();
@@ -53,15 +54,15 @@ namespace Api.Controllers
             return Ok(contact);//CASO CONTRARIO DEVUELVE UN CONTACTO ALEATORIO
         }
         //CARGAR CONTACTO
-        [HttpPost]
-        public async Task<ActionResult<Contact>> AddContact(Request request)
+        [HttpPost("PostContact")]
+        public async Task<ActionResult<Contact>> AddContact(ContactDto request)
         {
            await _contactRepository.AddContact(request);//UTILIZA EL MODELO REQUEST PARA CARGARLO EN EL MODELO CONTACTO Y SUBIRLO A LA BASE DE DATOS
             return Ok();//AL CARGAR EL CONTACTO DEVUELVE UN 200
         }
         //ACTUALIZAR CONTACTO
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Contact>> UpdateContact(Guid id, Request request)
+        [HttpPut("UpdateById/{id}")]
+        public async Task<ActionResult<Contact>> UpdateContact(Guid id, ContactDto request)
         {
             var contact = await _contactRepository.Get(id); //SOLICITA LA BUSQUEDA DE UNA ID 
             if (contact == null) 
@@ -72,7 +73,7 @@ namespace Api.Controllers
             return Ok(contact);// SI ESTO SE REALIZA DEVUELVE UN 200
         }
         //BORRAR CONTACTO
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteById/{id}")]
         public async Task<ActionResult<Contact>> Delete(Guid id)
         {
             var contact = await _contactRepository.Get(id); //SOLICITA LA BUSQUEDA DE UNA ID 

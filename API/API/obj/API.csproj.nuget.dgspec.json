@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Joa\\source\\repos\\API\\API\\API.csproj": {}
+    "C:\\Users\\Joa\\Desktop\\github\\API\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Joa\\source\\repos\\API\\API\\API.csproj": {
+    "C:\\Users\\Joa\\Desktop\\github\\API\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Joa\\source\\repos\\API\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Joa\\Desktop\\github\\API\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Joa\\source\\repos\\API\\API\\API.csproj",
+        "projectPath": "C:\\Users\\Joa\\Desktop\\github\\API\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Joa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Joa\\source\\repos\\API\\API\\obj\\",
+        "outputPath": "C:\\Users\\Joa\\Desktop\\github\\API\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,11 +32,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Joa\\source\\repos\\API\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\Joa\\source\\repos\\API\\Core\\Core.csproj"
+              "C:\\Users\\Joa\\Desktop\\github\\API\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\Joa\\Desktop\\github\\API\\Core\\Core.csproj"
               },
-              "C:\\Users\\Joa\\source\\repos\\API\\Data\\Data.csproj": {
-                "projectPath": "C:\\Users\\Joa\\source\\repos\\API\\Data\\Data.csproj"
+              "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\Data.csproj"
               }
             }
           }
@@ -87,14 +87,14 @@
         }
       }
     },
-    "C:\\Users\\Joa\\source\\repos\\API\\Core\\Core.csproj": {
+    "C:\\Users\\Joa\\Desktop\\github\\API\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Joa\\source\\repos\\API\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\Joa\\Desktop\\github\\API\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\Joa\\source\\repos\\API\\Core\\Core.csproj",
+        "projectPath": "C:\\Users\\Joa\\Desktop\\github\\API\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\Joa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Joa\\source\\repos\\API\\Core\\obj\\",
+        "outputPath": "C:\\Users\\Joa\\Desktop\\github\\API\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -115,8 +115,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Joa\\source\\repos\\API\\Data\\Data.csproj": {
-                "projectPath": "C:\\Users\\Joa\\source\\repos\\API\\Data\\Data.csproj"
+              "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\Data.csproj"
               }
             }
           }
@@ -150,14 +150,14 @@
         }
       }
     },
-    "C:\\Users\\Joa\\source\\repos\\API\\Data\\Data.csproj": {
+    "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Joa\\source\\repos\\API\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\Users\\Joa\\source\\repos\\API\\Data\\Data.csproj",
+        "projectPath": "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\Joa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Joa\\source\\repos\\API\\Data\\obj\\",
+        "outputPath": "C:\\Users\\Joa\\Desktop\\github\\API\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

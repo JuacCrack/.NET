@@ -1,4 +1,5 @@
-﻿using Data.Models;
+﻿using Core.DTO;
+using Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,8 +13,8 @@ namespace Core.PersonRepository.Interfaces //ESTA ES UNA INTERFAZ QUE SERA IMPLE
         Task <Contact> Get(Guid id);
         Task <List<Contact>> GetShuffle();
         Task <List<Contact>> GetAll();
-        Task AddContact(Request request);
-        Task UpdateContact(Guid id, Request request);
+        Task AddContact(ContactDto request);
+        Task UpdateContact(Guid id, ContactDto request);
         Task Delete(Guid id);
     }
 }

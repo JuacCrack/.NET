@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "D7e2/L+C4/SCYN7wWU6sQC4P6bNZ0FPJpsndDoQJ06PhMqv1QlYEJUUO3uj4wVpEaJC0xzvWsO0Eq+6mdMdlig==",
+  "dgSpecHash": "eEPJCHTp25Qaka/3yCbzBcSVDnJsv9jd8/buzWJ0xsKy023tv1pjeZbxyGf1YYLMHIKqd9a62ETB3DV4IdYMbA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Joa\\source\\repos\\API\\Core\\Core.csproj",
+  "projectFilePath": "C:\\Users\\Joa\\Desktop\\github\\API\\Core\\Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Joa\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Joa\\.nuget\\packages\\microsoft.entityframeworkcore\\2.1.14\\microsoft.entityframeworkcore.2.1.14.nupkg.sha512",

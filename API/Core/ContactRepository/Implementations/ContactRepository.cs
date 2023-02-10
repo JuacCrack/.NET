@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.DTO;
 
 namespace Core.PersonRepository.Implementations
 {
@@ -17,12 +18,12 @@ namespace Core.PersonRepository.Implementations
             _context = context; 
         }
         //AGREGAR CONTACTO
-        public async Task AddContact(Request request)
+        public async Task AddContact(ContactDto request)
         {
             var contact = new Contact //NUEVO MODELO DE CONTACT
             {
                 ContactId = Guid.NewGuid(), //UTILIZAMOS EL MODELO REQUEST PARA CARGAR AL MODELO CONTACT
-                name = request.name,
+                fullname = request.fullname,
                 company = request.company,
                 profile = request.profile,
                 image = request.image,
@@ -73,7 +74,7 @@ namespace Core.PersonRepository.Implementations
             return result;
         }
         //ACTUALIZAR CONTACTO
-        public async Task UpdateContact(Guid id, Request request)
+        public async Task UpdateContact(Guid id, ContactDto request)
         {
             var contact = await _context.Contacts.FindAsync(id);//UTILIZAMOS LA RUTA PARA BUSCAR UNA ID
             if (contact == null)
@@ -81,7 +82,7 @@ namespace Core.PersonRepository.Implementations
                 return; //SI LA ID ES NULA HACEMOS UNA DEVOLUCION
             }
             //SI LA ID EXISTE UTILIZAMOS EL REQUEST PARA CARGAR LOS DATOS DEL MODELO CONTACT
-            contact.name = request.name;
+            contact.fullname = request.fullname;
             contact.company = request.company;
             contact.profile = request.profile;
             contact.image = request.image;
