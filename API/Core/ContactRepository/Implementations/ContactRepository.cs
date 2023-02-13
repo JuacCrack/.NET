@@ -22,7 +22,7 @@ namespace Core.PersonRepository.Implementations
         {
             var contact = new Contact //NUEVO MODELO DE CONTACT
             {
-                ContactId = Guid.NewGuid(), //UTILIZAMOS EL MODELO REQUEST PARA CARGAR AL MODELO CONTACT
+                //UTILIZAMOS EL MODELO REQUEST PARA CARGAR AL MODELO CONTACT
                 fullname = request.fullname,
                 company = request.company,
                 profile = request.profile,
@@ -41,7 +41,7 @@ namespace Core.PersonRepository.Implementations
 
 
         //BORRAR CONTACTO
-        public async Task Delete(Guid id)
+        public async Task Delete(int id)
         {
             var contact = await _context.Contacts.FindAsync(id);//BUSCAMOS LA ID DE LA RUTA
             _context.Contacts.Remove(contact);//UTILIZAMOS EL DBCONTEXT PARA BORRAR EL CONTACTO DE LA DB
@@ -49,7 +49,7 @@ namespace Core.PersonRepository.Implementations
         }
 
         //TRAER CONTACTO POR ID
-        public async Task<Contact> Get(Guid id)
+        public async Task<Contact> Get(int id)
         {
             return await _context.Contacts.FindAsync(id);//UTILIZAMOS LA ID DE LA RUTA PARA DEVOLVER UN CONTACTO SEGUN LA ID
         }
@@ -68,13 +68,13 @@ namespace Core.PersonRepository.Implementations
                 return null;
             }
             int randomIndex = new Random().Next(0, count);
-            Guid randomGuid = contacts[randomIndex].ContactId;
-            Contact randomContact = await _context.Contacts.FirstOrDefaultAsync(c => c.ContactId == randomGuid);
+            int randomId = contacts[randomIndex].ContactId;
+            Contact randomContact = await _context.Contacts.FirstOrDefaultAsync(c => c.ContactId == randomId);
             List<Contact> result = new List<Contact> { randomContact };
             return result;
         }
         //ACTUALIZAR CONTACTO
-        public async Task UpdateContact(Guid id, ContactDto request)
+        public async Task UpdateContact(int id, ContactDto request)
         {
             var contact = await _context.Contacts.FindAsync(id);//UTILIZAMOS LA RUTA PARA BUSCAR UNA ID
             if (contact == null)

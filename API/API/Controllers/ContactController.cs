@@ -33,7 +33,7 @@ namespace Api.Controllers
         }
         //TRAER CONTACTO POR ID
         [HttpGet("GetById/{id}")]
-        public async Task<ActionResult<Contact>> Get(Guid id)
+        public async Task<ActionResult<Contact>> Get(int id)
         {
             var contact = await _contactRepository.Get(id);
             if (contact == null) 
@@ -62,7 +62,7 @@ namespace Api.Controllers
         }
         //ACTUALIZAR CONTACTO
         [HttpPut("UpdateById/{id}")]
-        public async Task<ActionResult<Contact>> UpdateContact(Guid id, ContactDto request)
+        public async Task<ActionResult<Contact>> UpdateContact(int id, ContactDto request)
         {
             var contact = await _contactRepository.Get(id); //SOLICITA LA BUSQUEDA DE UNA ID 
             if (contact == null) 
@@ -74,7 +74,7 @@ namespace Api.Controllers
         }
         //BORRAR CONTACTO
         [HttpDelete("DeleteById/{id}")]
-        public async Task<ActionResult<Contact>> Delete(Guid id)
+        public async Task<ActionResult<Contact>> Delete(int id)
         {
             var contact = await _contactRepository.Get(id); //SOLICITA LA BUSQUEDA DE UNA ID 
             if (contact == null)

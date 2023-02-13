@@ -3,8 +3,8 @@
     public class City//MODELO DE UNA CIUDAD
     {
 
-        public int? CityId { get; set; }
-        public string? name { get; set; }
+        public int CityId { get; set; }
+        public string name { get; set; }
 
 
     }

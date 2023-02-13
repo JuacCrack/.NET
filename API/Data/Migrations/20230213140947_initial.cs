@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
@@ -25,7 +24,8 @@ namespace Data.Migrations
                 name: "Contacts",
                 columns: table => new
                 {
-                    ContactId = table.Column<Guid>(nullable: false),
+                    ContactId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     fullname = table.Column<string>(nullable: true),
                     company = table.Column<string>(nullable: true),
                     profile = table.Column<string>(nullable: true),
@@ -35,7 +35,7 @@ namespace Data.Migrations
                     phonew = table.Column<string>(nullable: true),
                     phonep = table.Column<string>(nullable: true),
                     address = table.Column<string>(nullable: true),
-                    CityFK = table.Column<int>(nullable: true)
+                    CityFK = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
