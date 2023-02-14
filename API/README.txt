@@ -20,5 +20,5 @@ Además contamos con una carpeta DTO, adentro contiene un modelo request que util
 Luego se crea la migracion correspondiente y se sube la actualizacion a la base de datos.
 
 <APITEST> En este proyecto utilizo MStest para realizar testeos unitarios de cada metodo del controlador. Este proyecto inyecta dependecias de los 3 proyectos (API, DATA, CORE).
-Cabe destacar que no todos los test unitarios funcionan.
+Cabe destacar que estoy en proceso de investigación en el uso de testeos unitarios utilizando MsTest y Mock, por lo tanto me tope con algunas dificultades.
 
