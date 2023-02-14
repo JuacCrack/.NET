@@ -12,9 +12,11 @@ en este archivo de ejecucion automatica al iniciar, en este mismo archivo se dec
 
 <CORE> En este proyecto se utiliza la inyeccion de dependencia al proyecto DATA, en este encontramos el repositorio de los servicios de contacto, 
 tenemos la interfaz y la implementacion correspondiente que utiliza la interfaz y el contexto de la base de datos para crear la logica detras del controlador.
+Además contamos con una carpeta DTO, adentro contiene un modelo request que utilizamos como modelo para actualizar o cargar un contacto.
 
 <DATA> En el proyecto encontramos el contexto de nuestra base de datos que utiliza los modelos de contacto y ciudad para crear una relación entre ellos mediante una clave foranea. 
 Luego se crea la migracion correspondiente y se sube la actualizacion a la base de datos.
 
 <APITEST> En este proyecto utilizo MStest para realizar testeos unitarios de cada metodo del controlador. Este proyecto inyecta dependecias de los 3 proyectos (API, DATA, CORE).
+Cabe destacar que no todos los test unitarios funcionan.
 
